@@ -1,5 +1,11 @@
-import gschem, eeschema, table
+#!/usr/bin/env python3
+#Script to convert geda schematics to kicad schematics
+
 import time, sys
+sys.path.append("./parsers")
+
+import gschem, eeschema, table
+
 orientConv = {
     (0, 0):   [1, 0,  0, -1],
     (90, 0):  [ 0, -1, -1, 0],
