@@ -1,18 +1,5 @@
 #Python Library to parse ltspice's .asc schematic files.
 
-components = {
-    'nmos':['Device:Q_NMOS_GDS', 10, 10, 0],
-    'pmos':['Device:Q_PMOS_GDS', 10, 10, 0],
-    'voltage':['pspice:VSOURCE', 10, 10, 0],
-    'ind':['Device:L', 10, 10, 0],
-    'cap':['Device:C', 10, 10, 0],
-    'res':['Device:R', 10, 10, 0],
-    'Vcc':['power:VCC', 10, 10, 0],
-    '0':['power:GND', 10, 10, 0],
-    '*':['power:PWR_FLAG', 10, 10, 0]
-}
-
-
 def warn(msg):
     print("[WARN]LTSpice:", msg)
 

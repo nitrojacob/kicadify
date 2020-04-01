@@ -1,10 +1,22 @@
 #!/usr/bin/env python3
 #Script to convert geda schematics to kicad schematics
 
-import time, sys
-sys.path.append("./parsers")
+import time, sys, os
+myDir = os.path.dirname(os.path.realpath(__file__))
+sys.path.append(os.path.join(myDir, "parsers"))
 
-import gschem, eeschema, table
+import gschem, eeschema
+
+components = {
+    'vcc-2.sym':['power:VCC', 200, 0, 0],
+    'ground.sym':['power:GND', 200, 300, 0],
+    'inductor-2.sym':['Device:L', 0, 0, 0],
+    'capacitor-2.sym':['Device:C', 300, 200, 90],
+    'resistor-1.sym':['Device:R', 300, 100, 90],
+    'BC547-2.sym':['Transistor_BJT:BC547', 500, 600, 0],
+    'connector2-2.sym':['Connector:Conn_01x02_Male', 200, 600, 180],
+    '*':['power:PWR_FLAG', 0, 0, 0]
+}
 
 orientConv = {
     (0, 0):   [1, 0,  0, -1],
@@ -42,8 +54,6 @@ if len(sys.argv) < 3:
     sys.exit(1)
 
 ts = int(time.time())
-
-components = table.load('symbols.csv')
 
 gitems = gschem.load(sys.argv[1])
 eitems = []
@@ -97,7 +107,6 @@ for gi in gitems:
     if isinstance(gi, gschem.Componnent):
         if gi.basename in components:
             name, xoff, yoff, aoff = components[gi.basename]
-            xoff, yoff, aoff = int(xoff), int(yoff), int(aoff)  #TODO do this when table is loaded
             if gi.mirror:
                 xoff = -xoff
             if gi.angle == 90:

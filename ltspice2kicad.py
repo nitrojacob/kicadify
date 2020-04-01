@@ -1,9 +1,22 @@
 #!/usr/bin/env python3
-import time, sys
+import time, sys, os
 
-sys.path.append("./parsers")
+myDir = os.path.dirname(os.path.realpath(__file__))
+sys.path.append(os.path.join(myDir, "parsers"))
 
 import ltspice, eeschema
+
+components = {
+    'nmos':['Device:Q_NMOS_GDS', 10, 10, 0],
+    'pmos':['Device:Q_PMOS_GDS', 10, 10, 0],
+    'voltage':['pspice:VSOURCE', 10, 10, 0],
+    'ind':['Device:L', 10, 10, 0],
+    'cap':['Device:C', 10, 10, 0],
+    'res':['Device:R', 10, 10, 0],
+    'Vcc':['power:VCC', 10, 10, 0],
+    '0':['power:GND', 10, 10, 0],
+    '*':['power:PWR_FLAG', 10, 10, 0]
+}
 
 orientConv = {
     (0, 0):   [1, 0,  0, -1],

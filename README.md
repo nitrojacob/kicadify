@@ -2,6 +2,7 @@ Fork of https://github.com/blackvladimir/geda2kicad with additional read modules
 
 # ltspice2kicad
 Converts schematics from ltspice to kicad. Currently the conversion is only approximate due to symbol size differences between the two tools; Requiring one to redraw all the wires manually. It needs only pure python, it does not need gEDA PCB or KiCAD to run.
+TODO: Copy features of https://github.com/laurentc2/LTspice2Kicad
 
 ## Usage
 `python ltspice2kicad ltspice.asc kicad.sch`
